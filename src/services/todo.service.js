@@ -1,34 +1,33 @@
-import axios from 'axios'
+import axios from "axios";
+import { TOKEN_NAME } from "../context/auth.context";
+import apiInstace from "./apiInstance";
 
 class TodoService {
-    constructor() {
-        this.api = axios.create({
-            baseURL: `${import.meta.env.VITE_API_URL}/todos`
-        })
-    }
+  constructor() {
+    this.api = apiInstace;
+  }
 
-    create(data){
-        return this.api.post("/", data);
-    }
+  create(data) {
+    return this.api.post("/todos", data);
+  }
 
-    edit(id, data){
-        return this.api.put(`/${id}`, data);
-    }
+  edit(id, data) {
+    return this.api.put(`/todos/${id}`, data);
+  }
 
-    delete(id){
-        return this.api.delete(`/${id}`);
-    }
+  delete(id) {
+    return this.api.delete(`/todos/${id}`);
+  }
 
-    getAll(){
-        return this.api.get(`/`);
-    }
+  getAll() {
+    return this.api.get(`/todos`);
+  }
 
-    getOne(id){
-        return this.api.get(`/${id}`);
-    }
-
+  getOne(id) {
+    return this.api.get(`/todos/${id}`);
+  }
 }
 
-const todoService = new TodoService()
+const todoService = new TodoService();
 
 export default todoService;
